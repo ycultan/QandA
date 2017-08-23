@@ -1,0 +1,17 @@
+<div>
+  <a [routerLink]="['/dashboard']">Home</a> |
+  <a [routerLink]="['/question', question._id, 'new_answer']">Answer this Question</a>
+  <a [routerLink]="['']">Logout</a>
+  <h1>{{question.q_text}}</h1>
+  <p>{{question.description}}</p>
+  <div *ngFor="let answer of question._answers">
+    <fieldset>
+    <p>{{answer.user}}</p>
+    <p>{{answer.a_text}}</p>
+    <p>{{answer.likes}}</p>
+    <button (click)="addLike(answer._id)">Like!</button>
+    <p>{{answer.detail}}</p>
+    </fieldset>
+  </div>
+</div>
+

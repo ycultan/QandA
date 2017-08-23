@@ -1,0 +1,33 @@
+<div>
+  <a [routerLink]="['/dashboard']">Home</a>
+  <a [routerLink]="['/question', question._id]">Go Back to Question</a>
+  <a [routerLink]="['']">Logout</a>
+  <h1>{{question.q_text}}</h1>
+  <p>{{question.description}}</p>
+
+  <form #form="ngForm">
+    <p>
+      Your Answer:
+      <textarea 
+        name="a_text"
+        required
+        minlength="5"
+        [(ngModel)]="answer.a_text"
+        #a_text="ngModel">
+      </textarea>
+      <span *ngIf="a_text.errors">Needs to be 5 characters long</span>
+    </p>
+
+    <p>
+      Supporting details for your answer (optional):
+      <textarea 
+        name="details"
+        [(ngModel)]="answer.details"
+        #details='ngModel'>
+      </textarea>
+    </p>
+
+    <input [routerLink]="['/dashboard']" type="submit" value="Cancel">
+    <input (click)="onSubmit()" [routerLink]="['/dashboard']" [disabled]="!form.valid" type="submit" value="Submit">
+  </form>
+</div>
